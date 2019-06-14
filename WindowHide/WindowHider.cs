@@ -10,19 +10,19 @@ namespace WindowHide
 	class WindowHider
 	{
 		private List<Tuple<String, int>> titles;
-        private TrayMgr traymgr;
+		private TrayMgr traymgr;
 
 		public WindowHider(TrayMgr mgr)
 		{
-            traymgr = mgr;
+			traymgr = mgr;
 			titles = new List<Tuple<String, int>>();
 
-            string[] lines = System.IO.File.ReadAllLines("windowhider.ini");
-            foreach(string line in lines)
-            {
-                titles.Add(Tuple.Create(line, 0));
-            }
-        }
+			string[] lines = System.IO.File.ReadAllLines("windowhider.ini");
+			foreach(string line in lines)
+			{
+				titles.Add(Tuple.Create(line, 0));
+			}
+		}
 
 		public void BeginHiding()
 		{
@@ -37,18 +37,18 @@ namespace WindowHide
 					{
 						foreach (IntPtr hWnd in results)
 						{
-                            switch(traymgr.GetHideMode())
-                            {
-                                case HideMode.VISIBLE:
-                                    WindowFuncs.ShowWindow(hWnd);
-                                    break;
-                                case HideMode.MINIMIZED:
-                                    WindowFuncs.MinimizeWindow(hWnd);
-                                    break;
-                                case HideMode.HIDDEN:
-                                    WindowFuncs.HideWindow(hWnd);
-                                    break;
-                            }
+							switch(traymgr.GetHideMode())
+							{
+								case HideMode.VISIBLE:
+									WindowFuncs.ShowWindow(hWnd);
+									break;
+								case HideMode.MINIMIZED:
+									WindowFuncs.MinimizeWindow(hWnd);
+									break;
+								case HideMode.HIDDEN:
+									WindowFuncs.HideWindow(hWnd);
+									break;
+							}
 						}
 					}
 				}

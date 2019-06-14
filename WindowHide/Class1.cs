@@ -25,11 +25,11 @@ namespace WindowHide
 
 			WindowFuncs.HideWindow(hWnd);
 
-            tray = new TrayMgr();
-            var trayThread = new Thread(tray.StartTray);
-            trayThread.Start();
+			tray = new TrayMgr();
+			var trayThread = new Thread(tray.StartTray);
+			trayThread.Start();
 
-            hider = new WindowHider(tray);
+			hider = new WindowHider(tray);
 			var windowThread = new Thread(hider.BeginHiding);
 			windowThread.Start();
 

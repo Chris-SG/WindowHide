@@ -21,13 +21,13 @@ namespace WindowHide
 		[DllImport("USER32.DLL")]
 		private static extern bool EnumWindows(EnumWindowsProc enumFunc, int lParam);
 
-        [DllImport("USER32.DLL")]
-        private static extern bool IsWindowVisible(IntPtr hWnd);
+		[DllImport("USER32.DLL")]
+		private static extern bool IsWindowVisible(IntPtr hWnd);
 
-        [DllImport("USER32.DLL")]
-        private static extern bool IsIconic(IntPtr hWnd);
+		[DllImport("USER32.DLL")]
+		private static extern bool IsIconic(IntPtr hWnd);
 
-        [DllImport("USER32.DLL")]
+		[DllImport("USER32.DLL")]
 		private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
 		[DllImport("USER32.DLL")]
@@ -35,30 +35,30 @@ namespace WindowHide
 
 		private const int SW_HIDE = 0;
 		private const int SW_MAX = 2;
-        private const int SW_MINIMIZE = 6;
+		private const int SW_MINIMIZE = 6;
 		private const int SW_SHOW = 1;
 
 		public static void ShowWindow(IntPtr hWnd)
 		{
-            if(!IsWindowVisible(hWnd))
-            {
-                ShowWindowAsync(hWnd, SW_SHOW);
-                Console.WriteLine(DateTime.Now.ToString("'['yyyy'-'MM'-'dd'T'HH':'mm':'ss']'") + " Window shown: " + GetWindowTitle(hWnd) + " (" + hWnd + ")");
-            }
+			if(!IsWindowVisible(hWnd))
+			{
+				ShowWindowAsync(hWnd, SW_SHOW);
+				Console.WriteLine(DateTime.Now.ToString("'['yyyy'-'MM'-'dd'T'HH':'mm':'ss']'") + " Window shown: " + GetWindowTitle(hWnd) + " (" + hWnd + ")");
+			}
 		}
 
-        public static void MinimizeWindow(IntPtr hWnd)
-        {
-            if(!IsWindowVisible(hWnd))
-            {
-                ShowWindow(hWnd);
-            }
-            if(!IsIconic(hWnd))
-            {
-                ShowWindowAsync(hWnd, SW_MINIMIZE);
-                Console.WriteLine(DateTime.Now.ToString("'['yyyy'-'MM'-'dd'T'HH':'mm':'ss']'") + " Window minimized: " + GetWindowTitle(hWnd) + " (" + hWnd + ")");
-            }
-        }
+		public static void MinimizeWindow(IntPtr hWnd)
+		{
+			if(!IsWindowVisible(hWnd))
+			{
+				ShowWindow(hWnd);
+			}
+			if(!IsIconic(hWnd))
+			{
+				ShowWindowAsync(hWnd, SW_MINIMIZE);
+				Console.WriteLine(DateTime.Now.ToString("'['yyyy'-'MM'-'dd'T'HH':'mm':'ss']'") + " Window minimized: " + GetWindowTitle(hWnd) + " (" + hWnd + ")");
+			}
+		}
 
 		public static void HideWindow(IntPtr hWnd)
 		{
